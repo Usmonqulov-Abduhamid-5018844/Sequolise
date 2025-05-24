@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger"
+import { Type } from "class-transformer"
 import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator"
-
 export class CreateBookDto {
     @ApiProperty({example: "Ikki eshik orasi"})
     @IsString()
@@ -10,12 +10,12 @@ export class CreateBookDto {
     @ApiProperty({example: 35000})
     @IsNumber()
     @IsOptional()
-    proce: number
+    price: number
 
-    @ApiProperty({example: "data time"})
-    @IsString()
-    @IsNotEmpty()
+    @ApiProperty({example: "2025-05-24T22:34:40"})
+    @IsOptional()
     @IsDate()
+    @Type(()=> Date)
     date: Date
 
     @ApiProperty({example: "description"})
@@ -23,8 +23,8 @@ export class CreateBookDto {
     @IsNotEmpty()
     description: string
 
-    @ApiProperty({example: 2})
+    @ApiProperty({example: 1})
     @IsNumber()
     @IsNotEmpty()
-    author: string
+    authorId: number
 }

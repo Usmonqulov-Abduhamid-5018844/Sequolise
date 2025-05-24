@@ -1,4 +1,4 @@
-import { AllowNull, BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { Author } from "src/author/model/author.model";
 
 @Table({modelName: "Book"})
@@ -11,7 +11,7 @@ export class Book extends Model{
 
     @Column({
         type: DataType.STRING,
-        allowNull: false
+        defaultValue: DataType.NOW
     })
     date: string
     
@@ -36,6 +36,7 @@ export class Book extends Model{
 
     @BelongsTo(()=> Author,{
         onDelete: "CASCADE",
+        onUpdate: "CASCADE"
     })
     author: Author
 }
